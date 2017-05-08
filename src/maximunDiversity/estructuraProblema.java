@@ -25,9 +25,8 @@ public class estructuraProblema {
 		
 		//Arista de doble sentido
 		for(int i = 0; i < getNumElementos(); i++) 
-			for(int j = 0; j < getDimension(); j++) {
+			for(int j = 0; j < getDimension(); j++) 
 				setDatoMatrizDatos(i, j, sc.nextDouble());
-			}
 		sc.close();
 	}
 
