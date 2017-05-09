@@ -12,6 +12,12 @@ public class Point3D {
 	        xy = new Point2D.Double(x, y);
 	        this.z = z;
 	    }
+	    
+	    public Point3D(Point3D aux) {
+	    	xy.x = aux.getValor();
+	    	xy.y = aux.getDistancia();
+	    	z = aux.getPosicion();	    	
+	    }
 
 	    public double getValor() {
 	        return xy.getX();
