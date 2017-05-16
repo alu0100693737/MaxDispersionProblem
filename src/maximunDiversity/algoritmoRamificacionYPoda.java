@@ -17,7 +17,7 @@ public class algoritmoRamificacionYPoda extends algoritmo {
 		algoritmoVoraz(m);
 		System.out.println(getSolucionFinal());
 		System.out.println("Solucion Z = " + sumaDistanciasSolucion());
-		cotaInferior = sumaDistanciasSolucion() - 10;
+		cotaInferior = sumaDistanciasSolucion();
 		System.out.println("Cota inferior " + cotaInferior);
 		getSolucionFinal().clear();
 		contador = 0;
@@ -40,20 +40,17 @@ public class algoritmoRamificacionYPoda extends algoritmo {
 		//ramificamos
 		nodo actual = new nodo(getArbolRamificacion().getRaiz(), -1);
 		
-		double cotaInicial = 0;
+		
 		contador += 1;
 		for(int i = 0; i < getProblema().getNumVectores() - 1; i++) {
 			nodo nodo = new nodo (actual, i);
 
 			getSolucionFinal().add(nodo.getNumero().get(nodo.getNumero().size() - 1));
-			cotaInicial += sumaDistanciasSolucion();
+			
 			actual.añadirHijo(nodo);
 			getSolucionFinal().clear();
 		}
-		cotaInicial /= getProblema().getNumVectores();
-		System.out.println("Cota inicial " + cotaInicial);
-		
-
+	
 		actual.mostrarNodo();
 		actual.mostrarNodosHijos();
 		ArrayList<nodo> nodosCandidatos = new ArrayList<nodo>();
