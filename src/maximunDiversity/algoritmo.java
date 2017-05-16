@@ -9,10 +9,12 @@ import java.util.ArrayList;
 public class algoritmo {
 	private estructuraProblema problema;
 	private ArrayList<Integer> solucionFinal;
+	private boolean ramificacion;
 
 	public algoritmo(String fichero) throws FileNotFoundException, IOException {
 		problema = new estructuraProblema(fichero);
 		solucionFinal = new ArrayList<Integer>();
+		ramificacion = false;
 	}
 
 	public estructuraProblema getProblema() {
@@ -23,10 +25,18 @@ public class algoritmo {
 		return solucionFinal;
 	}
 	
+	public boolean getRamificacion() {
+		return ramificacion;
+	}
+	
+	public void setRamificacion(boolean aux) {
+		ramificacion = aux;
+	}
+
 	public void setSolucionFinal(ArrayList<Integer> aux) {
 		solucionFinal = new ArrayList<Integer>(aux);
 	}
-	
+
 	public ArrayList<Integer> getNodosVecinos(ArrayList<Integer> vector){
 		ArrayList<Integer> aux = new ArrayList<Integer>();
 		for(int i = 0; i < getProblema().getNumVectores(); i++)
@@ -34,7 +44,7 @@ public class algoritmo {
 				aux.add(i);
 		return aux;
 	}
-	
+
 	public double distanciaEuclideaVector(ArrayList<Double> a, ArrayList<Double> b) {
 		double suma = 0;
 		if(a.size() == b.size()) {
@@ -47,12 +57,12 @@ public class algoritmo {
 		}
 		return Math.sqrt(suma);
 	}
-	
+
 	public ArrayList<Double> centroGravedad() {
 		ArrayList<Double> centroGravedad = new ArrayList<Double>();
 		double aux = 0;
 		//centro de gravedad inicial
-		if(getSolucionFinal().size() == 0) {
+		if(getSolucionFinal().size() == 0 || ramificacion == true) {
 			for(int i = 0; i < getProblema().getDimension(); i++) {
 				aux = 0;
 				for(int j = 0; j < getProblema().getNumVectores(); j++) 
@@ -74,12 +84,28 @@ public class algoritmo {
 		}
 		return centroGravedad;
 	}
-	
+
 	public double sumaDistanciasSolucion() {
 		double suma = 0;
-		for(int i = 0; i < getSolucionFinal().size() - 1; i++) {
-			for(int j = i + 1; j < getSolucionFinal().size(); j++) {
-				suma += distanciaEuclideaVector(getProblema().getVectorProblema(getSolucionFinal().get(i)), getProblema().getVectorProblema(getSolucionFinal().get(j)));
+		if(getSolucionFinal().size() > 1) {
+			for(int i = 0; i < getSolucionFinal().size() - 1; i++) {
+				for(int j = i + 1; j < getSolucionFinal().size(); j++) {
+					suma += distanciaEuclideaVector(getProblema().getVectorProblema(getSolucionFinal().get(i)), getProblema().getVectorProblema(getSolucionFinal().get(j)));
+				}
+			}
+		} else {
+			suma += distanciaEuclideaVector(getProblema().getVectorProblema(getSolucionFinal().get(0)), centroGravedad());
+		}
+		//System.out.println("Z vale : " + suma);
+		return suma;
+	}
+
+	//Utilizado ramificacion y poca
+	public double sumaDistanciasSolucion(ArrayList<Integer> solucion) {
+		double suma = 0;
+		for(int i = 0; i < solucion.size() - 1; i++) {
+			for(int j = i + 1; j < solucion.size(); j++) {
+				suma += distanciaEuclideaVector(getProblema().getVectorProblema(solucion.get(i)), getProblema().getVectorProblema(solucion.get(j)));
 			}
 		}
 		//System.out.println("Z vale : " + suma);
@@ -89,10 +115,10 @@ public class algoritmo {
 
 	public void ejecutar(int tamanoSolucion) {
 	}
-	
+
 	public void calcularDiversity() {
 		for(int i = 0; i < getSolucionFinal().size(); i++) {
-			
+
 		}
 	}
 }

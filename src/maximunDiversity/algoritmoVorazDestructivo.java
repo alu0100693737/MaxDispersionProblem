@@ -38,7 +38,7 @@ public class algoritmoVorazDestructivo extends algoritmo {
 			getSolucionFinal().remove(elementosMasCercanos.indexOf(valor));
 			System.out.println(getSolucionFinal());
 		}
-		sumaDistanciasSolucion();
+		System.out.println("Z vale " + sumaDistanciasSolucion());
 	}
 
 	public void solucionInicial() {

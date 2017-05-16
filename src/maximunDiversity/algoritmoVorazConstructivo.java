@@ -20,10 +20,11 @@ public class algoritmoVorazConstructivo extends algoritmo {
 			System.out.println("Centro de gravedad ");
 			System.out.println(centroGravedad());
 			//Se añaden iterativamente las distancias de los vectores al centro de gravedad
-			for(int i = 0; i < getProblema().getNumVectores(); i++) 
+			for(int i = 0; i < getProblema().getNumVectores(); i++) {
 				elementosMasAlejados.add(distanciaEuclideaVector(getProblema().getVectorProblema(i), centroGravedad()));
-			System.out.println("HEYS" + elementosMasAlejados);
-			double valor = 0;
+			//System.out.println("HEYS" + elementosMasAlejados);
+				//System.out.println("Z vale: " + sumaDistanciasSolucion());
+			}double valor = 0;
 			for(int i = 0; i < elementosMasAlejados.size(); i++ )  
 				if(valor < elementosMasAlejados.get(i) && !getSolucionFinal().contains(i)) 
 					valor = elementosMasAlejados.get(i);
@@ -31,6 +32,6 @@ public class algoritmoVorazConstructivo extends algoritmo {
 			getSolucionFinal().add(elementosMasAlejados.indexOf(valor));
 			System.out.println(getSolucionFinal());
 		}
-		sumaDistanciasSolucion();
+		System.out.println("Z vale: " + sumaDistanciasSolucion());
 	}
 }

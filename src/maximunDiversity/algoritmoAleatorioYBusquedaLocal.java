@@ -41,6 +41,8 @@ public class algoritmoAleatorioYBusquedaLocal extends algoritmo {
 		
 		System.out.println("BUSQUEDA LOCAL");
 		busquedaLocalMáximaPendiente();
+		System.out.println(getSolucionFinal());
+		System.out.println("Z vale " + sumaDistanciasSolucion());
 	}
 	
 	//Estrategia, eliminar un nodo para poner otro

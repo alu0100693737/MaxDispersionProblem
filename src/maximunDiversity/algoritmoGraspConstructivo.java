@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class algoritmoGraspConstructivo extends algoritmo {
-	static final int NUM_MAX_BUSQUEDAS_LOCALES = 5;
+	static final int NUM_MAX_BUSQUEDAS_LOCALES = 10;
 	static final int LRC = 2;
 	private int numBusquedas;
 
@@ -81,7 +81,7 @@ public class algoritmoGraspConstructivo extends algoritmo {
 
 		System.out.println("\nBUSQUEDA LOCAL");
 		busquedaLocalMáximaPendiente();
-		sumaDistanciasSolucion();
+		System.out.println("Z vale " + sumaDistanciasSolucion());
 
 	}
 
@@ -92,6 +92,8 @@ public class algoritmoGraspConstructivo extends algoritmo {
 		if(getNumBusquedas() > NUM_MAX_BUSQUEDAS_LOCALES) {
 			System.out.println("Maximo de busquedas locales");
 			System.out.println(getSolucionFinal());
+			System.out.println("Z vale " + sumaDistanciasSolucion());
+
 
 		} else {
 			//Guardamos el vector solucion final en una copia
@@ -146,6 +148,8 @@ public class algoritmoGraspConstructivo extends algoritmo {
 				System.out.println(centroGravedad());
 				System.out.println("MEJORANDO Y VOLVEMOS A EJECUTAR BUSQUEDA LOCAL" );
 				busquedaLocalMáximaPendiente();	
+			} else {
+				System.out.println(getSolucionFinal());
 			}
 		}
 	}
